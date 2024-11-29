@@ -48,4 +48,37 @@
             <input type="text" id="nombreIC" class="input-box" placeholder="Nombre IC" required><br>
             <input type="text" id="domicilioIC" class="input-box" placeholder="Domicilio IC" required><br>
             <select id="sabor" class="input-box" required>
-                <option value="Tropical Mango (Original)">Tropical Mango (Original
+                <option value="Tropical Mango (Original)">Tropical Mango (Original)</option>
+                <option value="Purple Pulse (Uva)">Purple Pulse (Uva)</option>
+            </select><br>
+            <button type="submit" class="submit-btn">Realizar Pedido</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('formularioPedido').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData();
+            formData.append("nombreIC", document.getElementById('nombreIC').value);
+            formData.append("domicilioIC", document.getElementById('domicilioIC').value);
+            formData.append("sabor", document.getElementById('sabor').value);
+
+            fetch('https://discord.com/api/webhooks/1311858890866167859/OJ6WepXD0diVgVgnyygL3yRV0txYYpsInWAGCc4ug_UoxPgJXLiqSWh_oIxvnW3BLpdE', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Pedido realizado con éxito');
+            })
+            .catch(error => {
+                alert('Error al realizar el pedido');
+            });
+        });
+    </script>
+
+    <div>Desarrollado por: jj26m</div>
+
+</body>
+</html>
